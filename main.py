@@ -12,6 +12,11 @@ def display_image(digit):
     plt.axis("off")
     plt.show()
 
+# Manually prints prediction and actual label pairs up to a max index
+def manual_compare(max_index):
+    for i in range(max_index):
+        print("Prediction:", y_pred[i], "Actual:", y_test[i])
+
 digits = load_digits()
 # Split dataset into test and train
 X_train, X_test, y_train, y_test = train_test_split(digits['data'],digits['target'], random_state=0)
@@ -20,5 +25,7 @@ X_train, X_test, y_train, y_test = train_test_split(digits['data'],digits['targe
 knn = KNeighborsClassifier(n_neighbors=10) # Need to test value of k, 10 for now
 # adding training data
 knn.fit(X_train, y_train)
+y_pred = knn.predict(X_test)
+manual_compare(20)
 
 
